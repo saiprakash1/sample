@@ -1,0 +1,46 @@
+#!/usr/bin/python
+from socket import *
+import socket,sys
+#import netifaces as ni
+import time
+s=socket.socket(AF_INET,SOCK_DGRAM)
+hostname=socket.gethostname() 
+"""ni.ifaddresses('eth0')
+ip=ni.ifaddresses('eth0')[2][0]['addr']
+print ip"""
+port=12346
+port2=sys.argv[1]
+#server=sys.argv[2]
+print "Server is ready to receive messages"
+s.bind(('',int(port2)))
+
+#s.listen(5) Only for TCP clients
+while True:
+  #c,addr=s.accept()
+  #c,addr=s.recvfrom(2048)
+  #temp1=raw_input("enter client IP address ")
+  #temp2=raw_input("enter client port number")
+#  for var in range(1,6):
+   #print "In server for loop started",var
+   #print c.recv(1024)
+   #a=c.recvfrom(1024)
+   c,addr=s.recvfrom(2048) 
+   #print addr
+   b=c.upper()
+   print "upper case converted in server  :",b
+   temp1=addr[0]
+   temp2=addr[1]
+   temp=" message sent from server"
+   d=b+temp
+   s.sendto(d,(temp1,int(temp2)))
+   del d
+   #del temp1,temp2
+   #temp1.left=None
+   #temp2.left=None
+   #s.sendto(d,('192.168.0.12',12346))
+   #time.sleep(5)
+   #print "connected to server and printed from server,address is",addr
+  
+  #c.sendto("will be printed in client,Thank you for connecting,this message is sent from server to client",(hostname,port))
+s.close()
+

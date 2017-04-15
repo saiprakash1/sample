@@ -1,0 +1,37 @@
+#! /usr/bin/python
+from socket import *
+import socket,struct
+import time,sys
+#import netifaces as ni
+s=socket.socket(AF_INET,SOCK_DGRAM)
+#host1="192.168.0.12" #str(host)
+#socket.gethostname()
+#ni.ifaddresses('eth0')
+#ip=ni.ifaddresses('eth0')[2][0]['addr']
+#print ip
+port=sys.argv[1] #12345
+host1=sys.argv[2]
+port2=sys.argv[3]
+print port, host1, port2
+#var2=raw_input("Enter server ip address where server is running Hint:192.168.0.12")
+#var3=raw_input("Enter port number of listening server Hint: 12345")
+
+#s.connect((host1,port))
+#s.send('message sent from client process for testing')
+#s.sendto('convert to uppercase printed in server',(host,port))
+#s.bind(('192.168.0.12',12346))
+s.bind((host1,int(port)))
+
+for var in range(1,6):
+  print "In client for loop #",var
+  var1=raw_input("enter something here in client for loop:")
+  s.sendto(var1,(host1,int(port2)))
+  #s.sendto(var1,(var2,int(var3)))
+  #time.sleep(5)
+  #print "message to be received from server"
+  c,addr=s.recvfrom(2048)
+  print "message received from server # ",c
+  
+#print s.recvfrom(1024)
+s.close
+
