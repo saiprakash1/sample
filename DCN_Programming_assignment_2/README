@@ -1,0 +1,5 @@
+How to run program
+-----------------------
+1) open two terminals to run client and server programs saparately.
+2) use "python UDPPingerServer.py 12000" command to run my server program.It is taking port number to be assigned to server as an argument.Once this program is started, it keeps listening on port 12000 for the requests from client.
+3) use "python UDPClientpinger.py '127.0.0.1' 12345 '127.0.0.1' 12000" command to run my client program.It is taking clienthost,clientport,serverhost,serverport as command line arguments in order and uses them to send and receive requests from server. 
